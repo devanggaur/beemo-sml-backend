@@ -1,0 +1,12 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Beemo application backend",
+  "main": "server",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Kumar Shubham",
+  "license": "ISC",
+  "dependencies": {}
+}
