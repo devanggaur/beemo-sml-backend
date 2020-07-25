@@ -70,6 +70,30 @@ const markFavourite = (req, res) => {
     } ) 
 };
 
+const sentiments = async (req, res) =>{
+    let positive = 0;
+    let negative = 0;
+    let neutral = 0;
+    await Tweet.find({}, async (err, tweets)=>{
+        console.log(tweets.length)
+       tweets.forEach(async (tweet)=>{
+       
+        if(tweet._doc.sentiments> 0){
+            positive += 1;
+        }
+        if(tweet._doc.sentiments < 0){
+            negative += 1;
+        }
+        if(tweet._doc.sentiments == 0){
+            neutral += 1;
+        }
+       });
+        
+    });
+    const sentimentsArray = [positive, neutral, negative];
+    res.send(sentimentsArray);
+};
+
 module.exports = {
     getTweet : getTweet,
     storeTweet: storeTweet,
