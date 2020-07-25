@@ -62,6 +62,13 @@ const reTweet = (req, res) =>{
     } ) 
 };
 
+const markFavourite = (req, res) => {
+    const spawn = require("child_process").spawn;
+    const process = spawn('python',["./utils/markFavourite.py", req.query.tweetId]);
+    process.stdout.on('data', function(data) { 
+        res.send(data.toString()); 
+    } ) 
+};
 
 module.exports = {
     getTweet : getTweet,
