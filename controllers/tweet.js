@@ -54,6 +54,14 @@ const storeTweet = async (req, res) =>{
 };
 
 
+const reTweet = (req, res) =>{
+    const spawn = require("child_process").spawn;
+    const process = spawn('python',["./utils/reTweet.py", req.body.message, req.body.tweetId]);
+    process.stdout.on('data', function(data) { 
+        res.send(data.toString()); 
+    } ) 
+};
+
 
 module.exports = {
     getTweet : getTweet,
