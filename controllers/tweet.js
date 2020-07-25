@@ -94,6 +94,27 @@ const sentiments = async (req, res) =>{
     res.send(sentimentsArray);
 };
 
+const getStoredTweets = async (req, res) => {
+    console.log("I reached");
+    await Tweet.find({},async (err, tweets)=>{
+        if(err){
+            console.log(err);
+        }
+        console.log(tweets);
+        await res.send({"tweets":tweets});
+    });
+}
+
+const getStateWiseData = async(req, res) => {
+    await stateData.find({}, async (err,data) =>{
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        await res.send({"data":data});
+    });
+}
+
 module.exports = {
     getTweet : getTweet,
     storeTweet: storeTweet,
